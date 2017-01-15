@@ -29,6 +29,7 @@ This is an example `logback.xml` that uses a common `PatternLayout` to encode a 
 
 ```xml
 [src/main/resources/logback.xml]
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
     <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
