@@ -44,6 +44,7 @@ This is an example `logback.xml` that uses a common `PatternLayout` to encode a 
     </appender>
 
     <root level="info">
+        <appender-ref ref="STDOUT" />
         <appender-ref ref="TestNG" />
     </root>
 </configuration>
