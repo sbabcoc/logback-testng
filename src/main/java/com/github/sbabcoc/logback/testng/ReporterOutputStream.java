@@ -1,4 +1,4 @@
-package com.github.sbabcock.logback.testng;
+package com.github.sbabcoc.logback.testng;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
