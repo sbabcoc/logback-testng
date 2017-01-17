@@ -5,8 +5,6 @@ import static org.testng.Assert.assertEquals;
 import java.io.UnsupportedEncodingException;
 import org.testng.annotations.Test;
 
-import com.github.sbabcoc.logback.testng.ReporterAppender;
-
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.appender.AbstractAppenderTest;
