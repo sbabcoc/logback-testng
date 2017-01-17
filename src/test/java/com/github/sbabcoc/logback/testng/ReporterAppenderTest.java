@@ -1,4 +1,4 @@
-package com.github.sbabcock.logback.testng;
+package com.github.sbabcoc.logback.testng;
 
 import static org.testng.Assert.assertEquals;
 

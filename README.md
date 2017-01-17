@@ -12,7 +12,7 @@ Add `logback-testng` and `logback-classic` as library dependencies to your proje
 ```xml
 [maven pom.xml]
 <dependency>
-    <groupId>com.github.sbabcock</groupId>
+    <groupId>com.github.sbabcoc</groupId>
     <artifactId>logback-testng</artifactId>
     <version>1.0.0</version>
     <scope>runtime</scope>
