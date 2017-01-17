@@ -38,7 +38,7 @@ This is an example `logback.xml` that uses a common `PatternLayout` to encode a 
     </appender>
 
     <!-- This is the ReporterAppender -->
-    <appender name="TestNG" class="com.github.sbabcock.logback.testng.ReporterAppender">
+    <appender name="TestNG" class="com.github.sbabcoc.logback.testng.ReporterAppender">
         <encoder>
             <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
         </encoder>
