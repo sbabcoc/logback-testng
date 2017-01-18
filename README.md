@@ -1,3 +1,5 @@
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.sbabcoc/logback-testng/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.sbabcoc/logback-testng)
+
 # logback-testng
 Logback appender for TestNG Reporter
 
