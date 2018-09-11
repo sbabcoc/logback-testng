@@ -42,8 +42,8 @@
   </properties>
 
   <scm>
-    <connection>scm:git:git@github.com:sbabcoc/logback-testng.git</connection>
-    <developerConnection>scm:git:git@github.com:sbabcoc/logback-testng.git</developerConnection>
+    <connection>scm:git:https://github.com/sbabcoc/logback-testng.git</connection>
+    <developerConnection>scm:git:https://github.com/sbabcoc/logback-testng.git</developerConnection>
     <url>https://github.com/sbabcoc/logback-testng/tree/master</url>
     <tag>HEAD</tag>
   </scm>
