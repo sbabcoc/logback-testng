@@ -3,7 +3,7 @@
   
   <groupId>com.github.sbabcoc</groupId>
   <artifactId>logback-testng</artifactId>
-  <version>1.0.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <packaging>jar</packaging>
 
   <name>Logback Appender for TestNG</name>
@@ -45,7 +45,7 @@
     <connection>scm:git:git@github.com:sbabcoc/logback-testng.git</connection>
     <developerConnection>scm:git:git@github.com:sbabcoc/logback-testng.git</developerConnection>
     <url>https://github.com/sbabcoc/logback-testng/tree/master</url>
-    <tag>HEAD</tag>
+    <tag>logback-testng-1.0.1</tag>
   </scm>
 
   <distributionManagement>
