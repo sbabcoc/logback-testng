@@ -38,6 +38,7 @@
     <gpg-plugin.version>1.6</gpg-plugin.version>
     <staging-plugin.version>1.6.7</staging-plugin.version>
     <release-plugin.version>2.5.3</release-plugin.version>
+    <skipSigning>true</skipSigning>
   </properties>
 
   <scm>
@@ -57,6 +58,7 @@
       <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
     </repository>
   </distributionManagement>
+  
   <dependencies>
     <dependency>
       <groupId>org.testng</groupId>
@@ -87,6 +89,7 @@
       <scope>provided</scope>
     </dependency>
   </dependencies>
+  
   <build>
     <plugins>
       <plugin>
@@ -126,6 +129,11 @@
             <goals>
               <goal>sign</goal>
             </goals>
+            <configuration>
+              <keyname>${gpg.keyname}</keyname>
+              <passphraseServerId>${gpg.keyname}</passphraseServerId>
+              <skip>${skipSigning}</skip>
+            </configuration>
           </execution>
         </executions>
       </plugin>
@@ -153,4 +161,13 @@
       </plugin>
     </plugins>
   </build>
+  
+  <profiles>
+    <profile>
+      <id>signing</id>
+      <properties>
+        <skipSigning>false</skipSigning>
+      </properties>
+    </profile>
+  </profiles>
 </project>
