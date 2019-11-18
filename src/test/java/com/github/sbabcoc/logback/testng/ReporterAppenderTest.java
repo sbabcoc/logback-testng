@@ -3,6 +3,8 @@ package com.github.sbabcoc.logback.testng;
 import static org.testng.Assert.assertEquals;
 
 import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+
 import org.testng.annotations.Test;
 
 import ch.qos.logback.core.Appender;
@@ -64,12 +66,12 @@ public class ReporterAppenderTest extends AbstractAppenderTest<Object> {
     public void testUTF16BE() throws UnsupportedEncodingException {
         ReporterAppender<Object> ra = (ReporterAppender<Object>) getAppender();
         DummyEncoder<Object> dummyEncoder = new DummyEncoder<Object>();
-        String encodingName = "UTF-16BE";
-        dummyEncoder.setEncodingName(encodingName);
+        Charset charset = Charset.forName("UTF-16BE");
+        dummyEncoder.setCharset(charset);
         ra.setEncoder(dummyEncoder);
         ra.start();
         ra.doAppend(new Object());
-        assertEquals(new String(ra.toString().getBytes(), encodingName), DummyLayout.DUMMY);
+        assertEquals(new String(ra.toString().getBytes(), charset), DummyLayout.DUMMY);
     }
     
     @Test
