@@ -16,18 +16,18 @@ import ch.qos.logback.core.layout.DummyLayout;
 
 public class ReporterAppenderTest extends AbstractAppenderTest<Object> {
 
-	@Override
-	protected Appender<Object> getAppender() {
-		return new ReporterAppender<Object>();
-	}
+    @Override
+    protected Appender<Object> getAppender() {
+        return new ReporterAppender<Object>();
+    }
 
-	@Override
-	protected Appender<Object> getConfiguredAppender() {
+    @Override
+    protected Appender<Object> getConfiguredAppender() {
         ReporterAppender<Object> ra = new ReporterAppender<Object>();
         ra.setEncoder(new NopEncoder<Object>());
         ra.start();
         return ra;
-	}
+    }
 
     @Test
     public void smoke() {
@@ -73,23 +73,23 @@ public class ReporterAppenderTest extends AbstractAppenderTest<Object> {
         ra.doAppend(new Object());
         assertEquals(new String(ra.toString().getBytes(), charset), DummyLayout.DUMMY);
     }
-    
+
     @Test
     @Override
     public void testNewAppender() {
-    	super.testNewAppender();
+        super.testNewAppender();
     }
-    
+
     @Test
     @Override
     public void testConfiguredAppender() {
-    	super.testConfiguredAppender();
+        super.testConfiguredAppender();
     }
-    
+
     @Test
     @Override
     public void testNoStart() {
-    	super.testNoStart();
+        super.testNoStart();
     }
-    
+
 }
