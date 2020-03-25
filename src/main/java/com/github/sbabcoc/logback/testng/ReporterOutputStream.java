@@ -4,8 +4,6 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import org.testng.Reporter;
-
 public class ReporterOutputStream extends OutputStream {
 	
 	private boolean logToStdOut = false;
@@ -27,7 +25,7 @@ public class ReporterOutputStream extends OutputStream {
 	
 	@Override
 	public void flush() {
-		Reporter.log(baos.toString(), logToStdOut);
+		ReporterAppender.log(baos.toString(), logToStdOut);
 		baos.reset();
 	}
 	

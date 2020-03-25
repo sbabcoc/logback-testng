@@ -1,9 +1,9 @@
 package com.github.sbabcoc.logback.testng;
 
 import java.io.OutputStream;
-
-import org.testng.ITestResult;
-import org.testng.Reporter;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import java.util.List;
 
 import com.google.common.base.Joiner;
 
@@ -11,7 +11,33 @@ import ch.qos.logback.core.OutputStreamAppender;
 
 public class ReporterAppender<E> extends OutputStreamAppender<E> {
 
+    private static final Method getCurrentTestResult;
+    private static final Method getOutput;
+    private static final Method log;
+    
     protected boolean logToStdOut = false;
+    
+    static {
+    	Method gctr = null;
+    	Method go = null;
+    	Method l = null;
+    	try {
+			Class<?> reporter = Class.forName("org.testng.Reporter");
+			Class<?> testResult = Class.forName("org.testng.ITestResult");
+			
+			gctr = reporter.getMethod("getCurrentTestResult");
+			go = reporter.getMethod("getOutput", testResult);
+			l = reporter.getMethod("log", String.class, Boolean.TYPE);
+		} catch (ClassNotFoundException | NoSuchMethodException | SecurityException e) {
+	    	gctr = null;
+	    	go = null;
+	    	l = null;
+		} finally {
+			getCurrentTestResult = gctr;
+			getOutput = go;
+			log = l;
+		}
+    }
     
     @Override
     public void start() {
@@ -34,10 +60,20 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
         throw new UnsupportedOperationException("The output stream of " + this.getClass().getName() + " cannot be altered");
     }
     
-    @Override
+	@Override
+    @SuppressWarnings("unchecked")
     public String toString() {
-        ITestResult testResult = Reporter.getCurrentTestResult();
-        return Joiner.on("").join(Reporter.getOutput(testResult));
+    	if (getCurrentTestResult != null) {
+        	Object testResult;
+			try {
+				testResult = getCurrentTestResult.invoke(null);
+	        	List<String> output = (List<String>) getOutput.invoke(null, testResult);
+	        	return Joiner.on("").join(output);
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				// nothing to do here
+			}
+    	}
+    	return "";
     }
 
     /**
@@ -60,6 +96,21 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
      */
     public boolean doLogToStdOut() {
         return logToStdOut;
+    }
+    
+    /**
+     * Log the passed string to the HTML reports. If logToStandardOut is true, the string will also be printed on standard out.
+     * @param s The message to log
+     * @param logToStandardOut Whether to print this string on standard out too
+     */
+    static void log(String s, boolean logToStandardOut) {
+    	if (log != null) {
+    		try {
+				log.invoke(null, s, logToStandardOut);
+			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
+				// nothing to do here
+			}
+    	}
     }
 
 }
