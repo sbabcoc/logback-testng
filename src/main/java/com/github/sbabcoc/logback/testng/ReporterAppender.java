@@ -5,8 +5,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.List;
 
-import com.google.common.base.Joiner;
-
 import ch.qos.logback.core.OutputStreamAppender;
 
 public class ReporterAppender<E> extends OutputStreamAppender<E> {
@@ -61,14 +59,11 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
     }
     
 	@Override
-    @SuppressWarnings("unchecked")
     public String toString() {
-    	if (getCurrentTestResult != null) {
-        	Object testResult;
+    	if ((getCurrentTestResult != null) && (getOutput != null)) {
 			try {
-				testResult = getCurrentTestResult.invoke(null);
-	        	List<String> output = (List<String>) getOutput.invoke(null, testResult);
-	        	return Joiner.on("").join(output);
+				Object testResult = getCurrentTestResult.invoke(null);
+	        	return concat(getOutput.invoke(null, testResult));
 			} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
 				// nothing to do here
 			}
@@ -111,6 +106,20 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
 				// nothing to do here
 			}
     	}
+    }
+    
+    /**
+     * Concatenate the elements of the specified list of strings.
+     * @param parts list of strings to concatenate
+     * @return concatenated string
+     */
+    @SuppressWarnings("unchecked")
+    private static String concat(Object parts) {
+    	StringBuilder builder = new StringBuilder();
+    	for (String part : (List<String>) parts) {
+    		builder.append(part);
+    	}
+        return builder.toString();
     }
 
 }
