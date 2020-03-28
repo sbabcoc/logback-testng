@@ -26,7 +26,7 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
             gctr = reporter.getMethod("getCurrentTestResult");
             go = reporter.getMethod("getOutput", testResult);
             l = reporter.getMethod("log", String.class, Boolean.TYPE);
-        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException e) {
+        } catch (ClassNotFoundException | NoSuchMethodException | SecurityException | UnsupportedClassVersionError e) {
             gctr = null;
             go = null;
             l = null;
