@@ -29,9 +29,9 @@
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.release>8</maven.compiler.release>
-    <testng.version>7.5</testng.version>
-    <junit.version>4.13.2</junit.version>
-    <logback.version>1.2.11</logback.version>
+    <testng.version>7.5.1</testng.version>
+    <junit.version>5.12.1</junit.version>
+    <logback.version>1.3.15</logback.version>
     <compiler-plugin.version>3.10.1</compiler-plugin.version>
     <surefire-plugin.version>3.0.0-M7</surefire-plugin.version>
     <source-plugin.version>3.2.1</source-plugin.version>
@@ -69,8 +69,8 @@
     </dependency>
     <!-- required by logback-core test jar -->
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
