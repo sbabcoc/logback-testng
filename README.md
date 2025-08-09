@@ -16,13 +16,13 @@ Add `logback-testng` and `logback-classic` as library dependencies to your proje
 <dependency>
     <groupId>com.github.sbabcoc</groupId>
     <artifactId>logback-testng</artifactId>
-    <version>1.0.0</version>
+    <version>2.1.0</version>
     <scope>runtime</scope>
 </dependency>
 <dependency>
     <groupId>ch.qos.logback</groupId>
     <artifactId>logback-classic</artifactId>
-    <version>1.1.2</version>
+    <version>1.5.13</version>
     <scope>runtime</scope>
 </dependency>
 ```
