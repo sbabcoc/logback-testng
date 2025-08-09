@@ -10,7 +10,7 @@ import org.testng.annotations.Test;
 import ch.qos.logback.core.Appender;
 import ch.qos.logback.core.CoreConstants;
 import ch.qos.logback.core.appender.AbstractAppenderTest;
-import ch.qos.logback.core.encoder.DummyEncoder;
+import ch.qos.logback.core.testUtil.DummyEncoder;
 import ch.qos.logback.core.encoder.NopEncoder;
 import ch.qos.logback.core.layout.DummyLayout;
 

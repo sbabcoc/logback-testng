@@ -7,12 +7,19 @@ import java.util.List;
 
 import ch.qos.logback.core.OutputStreamAppender;
 
+/**
+ * This class appends log events to the <b>TestNG Reporter</b>. 
+ * 
+ * @param <E> supported log event type
+ * @see ReporterOutputStream
+ */
 public class ReporterAppender<E> extends OutputStreamAppender<E> {
 
     private static final Method getCurrentTestResult;
     private static final Method getOutput;
     private static final Method log;
 
+    /** {@code true} to fork output to STDOUT */
     protected boolean logToStdOut = false;
 
     static {
@@ -35,6 +42,13 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
             getOutput = go;
             log = l;
         }
+    }
+    
+    /**
+     * Default constructor
+     */
+    public ReporterAppender() {
+    	super();
     }
 
     @Override
@@ -73,6 +87,7 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
 
     /**
      * Specify if output should be sent to <i>STDOUT</i> in addition to the TestNG HTML report.
+     * 
      * @param logToStdOut {@code false} to send output only to the TestNG HTML report; 
      *         {@code true} to fork output to <i>STDOUT</i> and the TestNG HTML report.
      */
@@ -86,6 +101,7 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
 
     /**
      * Determine if output is being forked to <i>STDOUT</i> and the TestNG HTML report.
+     * 
      * @return {@code false} if output is being sent solely to the TestNG HTML report; 
      *         {@code true} if output is being forked to <i>STDOUT</i> and the TestNG HTML report.
      */
@@ -94,7 +110,9 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
     }
 
     /**
-     * Log the passed string to the HTML reports. If logToStandardOut is true, the string will also be printed on standard out.
+     * Log the passed string to the HTML reports. If logToStandardOut is true, the string will also be printed on
+     * standard out.
+     * 
      * @param s The message to log
      * @param logToStandardOut Whether to print this string on standard out too
      */
@@ -110,6 +128,7 @@ public class ReporterAppender<E> extends OutputStreamAppender<E> {
 
     /**
      * Concatenate the elements of the specified list of strings.
+     * 
      * @param parts list of strings to concatenate
      * @return concatenated string
      */
